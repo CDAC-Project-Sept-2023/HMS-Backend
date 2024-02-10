@@ -12,6 +12,6 @@ public interface AppointmentService {
 	String addAppoinment(Long patientId, Long doctorId, AppointmentDto apt);
 
 	List<Appointment> getAllappointServ();
-
+	void updateAppointmentStatusServ(Long id);
 	
 }

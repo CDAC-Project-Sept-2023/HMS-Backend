@@ -51,6 +51,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return aptDao.findAll();
 	}
 
+
+	@Override
+	public void updateAppointmentStatusServ(Long id) {
+		
+		 Appointment apt =aptDao.findById(id).orElseThrow();
+		 apt.setAptStatus(false);
+		 aptDao.save(apt);
+		// aptDao.updateAppointmentStatusToFalse(id);
+	}
+
 	
 
 
