@@ -60,5 +60,10 @@ public class PatientController {
 		patientServ.updatePatient(detachedPatient,patientId);
 	}
 	
+	@GetMapping("/{patientId}")
+	public Patient findById(@PathVariable Long patientId) {
+		return patientServ.findById(patientId);
+		
+	}
 
 }

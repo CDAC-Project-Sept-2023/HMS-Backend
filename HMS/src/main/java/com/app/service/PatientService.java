@@ -20,5 +20,7 @@ public interface PatientService {
 
 	void updatePatient(PatientDto detachedPatient, Long patientId);
 
+	Patient findById(Long patientId);
+
 	
 }
