@@ -13,5 +13,7 @@ public interface AppointmentService {
 
 	List<Appointment> getAllappointServ();
 
+	List<Appointment> getAllAppointmentBypatientId(Long patientId);
+
 	
 }

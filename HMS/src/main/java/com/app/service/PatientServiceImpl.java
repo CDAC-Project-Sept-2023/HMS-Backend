@@ -61,7 +61,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Patient findById(Long patientId) {
+	public Patient getPatientById(Long patientId) {
 		
 		return patientDao.findById(patientId).orElseThrow();
 	}

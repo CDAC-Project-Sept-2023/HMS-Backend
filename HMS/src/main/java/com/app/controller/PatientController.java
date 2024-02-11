@@ -61,9 +61,10 @@ public class PatientController {
 	}
 	
 	@GetMapping("/{patientId}")
-	public Patient findById(@PathVariable Long patientId) {
-		return patientServ.findById(patientId);
+	public Patient getPatientById(@PathVariable Long patientId) {
+		return patientServ.getPatientById(patientId);
 		
 	}
+	
 
 }

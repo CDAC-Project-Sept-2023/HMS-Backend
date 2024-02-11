@@ -39,8 +39,11 @@ public class AppointmentController {
 	@GetMapping
 	public List<Appointment> getAllAppointment() {
 		return aptService.getAllappointServ();
-
-		
+	}
+	
+	@GetMapping("/{patientId}")
+	public List<Appointment> getAllAppointmentBypatientId(@PathVariable Long patientId){
+		return aptService.getAllAppointmentBypatientId(patientId);
 		
 	}
 }

@@ -51,6 +51,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return aptDao.findAll();
 	}
 
+	@Override
+	public List<Appointment> getAllAppointmentBypatientId(Long patientId) {
+		//System.err.println(aptDao.findAllById(patientId));
+	//Patient p=	patientDao.getReferenceById(patientId);
+		 Patient p=patientDao.findById(patientId).orElseThrow();
+		System.out.println(aptDao.findAllByPatient(p));
+		return aptDao.findAllByPatient(p);
+	}
+
 	
 
 
