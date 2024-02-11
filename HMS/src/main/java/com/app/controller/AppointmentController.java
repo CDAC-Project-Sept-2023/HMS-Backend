@@ -42,9 +42,17 @@ public class AppointmentController {
 		return aptService.getAllappointServ();
 	}
 
+
 	@PutMapping("/{id}")
 	public void updateAppointmentStatus(@PathVariable Long id) {
 		
 		aptService.updateAppointmentStatusServ(id);
+	}
+	
+	@GetMapping("/{patientId}")
+	public List<Appointment> getAllAppointmentBypatientId(@PathVariable Long patientId){
+		return aptService.getAllAppointmentBypatientId(patientId);
+		
+
 	}
 }

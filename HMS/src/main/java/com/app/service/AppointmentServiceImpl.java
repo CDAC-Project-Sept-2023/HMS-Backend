@@ -52,6 +52,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 
+
 	@Override
 	public void updateAppointmentStatusServ(Long id) {
 		
@@ -59,6 +60,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 		 apt.setAptStatus(false);
 		 aptDao.save(apt);
 		// aptDao.updateAppointmentStatusToFalse(id);
+	}
+	@Override
+	public List<Appointment> getAllAppointmentBypatientId(Long patientId) {
+		//System.err.println(aptDao.findAllById(patientId));
+	//Patient p=	patientDao.getReferenceById(patientId);
+		 Patient p=patientDao.findById(patientId).orElseThrow();
+		System.out.println(aptDao.findAllByPatient(p));
+		return aptDao.findAllByPatient(p);
+
 	}
 
 	
