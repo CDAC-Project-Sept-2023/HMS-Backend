@@ -43,6 +43,10 @@ public class Appointment extends BaseEntity {
 	@Column(name="payment_status",nullable = false)
 	private Boolean paymentStatus;
 	
+
+	@Column(name="appointment_status",nullable = false)
+	private Boolean aptStatus=true;
+	
 	@ManyToOne
 	@JoinColumn(name="patient_id",nullable = false)
 	private Patient patient;
@@ -76,6 +80,7 @@ public class Appointment extends BaseEntity {
 		this.setName(apt.getName());
 		this.setRelation(apt.getRelation());
 		this.setPaymentStatus(true);
+	//	this.setAptStatus(true);
 	}
 
 }

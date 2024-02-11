@@ -34,6 +34,11 @@ public class AppointmentDto {
 	
 	@JsonProperty(defaultValue = "false",access = Access.READ_ONLY)
 	private boolean paymentStatus;
+	
+//	@JsonProperty(defaultValue = "true")
+//	private Boolean aptStatus;
+//	
+
 
 //	@JsonProperty(value = "doctor_Id")
 //	private Long doctorId;
