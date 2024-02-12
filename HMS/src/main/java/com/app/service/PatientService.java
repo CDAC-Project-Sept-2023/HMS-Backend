@@ -14,7 +14,7 @@ public interface PatientService {
 
 	List<Patient> displayAllPatient();
 
-	Patient authenticateEmployee(@Valid SigninRequest request);
+	Patient authenticatePatient(@Valid SigninRequest request);
 
 	void updateStatusOfPatient(Long patientId);
 

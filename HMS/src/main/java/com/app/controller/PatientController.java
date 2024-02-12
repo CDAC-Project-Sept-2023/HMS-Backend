@@ -44,7 +44,7 @@ public class PatientController {
 	@PostMapping("/signin")
 	public Patient authenticateEmp(@RequestBody @Valid SigninRequest request) {
 		System.out.println("in auth emp " + request);
-		return patientServ.authenticateEmployee(request);
+		return patientServ.authenticatePatient(request);
 
 	}
 	
@@ -55,9 +55,12 @@ public class PatientController {
 	}
 	
 	@PutMapping("patientId/{patientId}")
-	public void UpdatePatient(@PathVariable Long patientId,@RequestBody PatientDto detachedPatient)
+	public Integer UpdatePatient(@PathVariable Long patientId,@RequestBody PatientDto detachedPatient)
 	{
+		
 		patientServ.updatePatient(detachedPatient,patientId);
+		int i =1;
+		return i;
 	}
 	
 	@GetMapping("/{patientId}")

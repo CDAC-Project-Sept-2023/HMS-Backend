@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DoctorDto;
 import com.app.dto.PatientDto;
+import com.app.dto.SigninRequest;
 import com.app.entities.Doctor;
+import com.app.entities.Patient;
 import com.app.service.DoctorService;
 
 @RestController
@@ -47,6 +51,18 @@ public class DoctorController {
 	public void UpdatePatient(@PathVariable Long docId,@RequestBody DoctorDto detachedDoctor)
 	{
 		docService.updateDoctor(detachedDoctor,docId);
+	}
+	@GetMapping("/{doctorId}")
+	public Doctor getDoctorById(@PathVariable Long doctorId) {
+		return docService.getDoctorById(doctorId);
+		
+	}
+	
+	@PostMapping("/signin")
+	public Doctor authenticateDoc(@RequestBody @Valid SigninRequest request) {
+		System.out.println("in auth doc " + request);
+		return docService.authenticateDoctor(request);
+
 	}
 	
 	

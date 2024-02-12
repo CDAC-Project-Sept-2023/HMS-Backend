@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +36,8 @@ public class AppointmentDto {
 	
 	@JsonProperty(defaultValue = "false",access = Access.READ_ONLY)
 	private boolean paymentStatus;
+	
+	//private Timestamp timestamp;
 	
 //	@JsonProperty(defaultValue = "true")
 //	private Boolean aptStatus;

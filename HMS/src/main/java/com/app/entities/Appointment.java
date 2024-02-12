@@ -1,5 +1,7 @@
 package com.app.entities;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -55,6 +57,11 @@ public class Appointment extends BaseEntity {
 	@JoinColumn(name="doctor_id",nullable = false)
 	private Doctor doctor;
 	
+	
+	private Timestamp timestamp;
+	
+	
+	
 	public void addAppointment(Patient patient, Doctor doctor) {
 
 		this.setPatient(patient);
@@ -80,7 +87,35 @@ public class Appointment extends BaseEntity {
 		this.setName(apt.getName());
 		this.setRelation(apt.getRelation());
 		this.setPaymentStatus(true);
+		
+		long currentSeconds=Instant.now().getEpochSecond();
+		this.timestamp=new Timestamp(currentSeconds*1000);
 	//	this.setAptStatus(true);
 	}
+
+
+
+	public Appointment(String name, int age, String contactNo, String relation, double paymentAmount,
+			Boolean paymentStatus, Boolean aptStatus, Patient patient, Doctor doctor) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.contactNo = contactNo;
+		this.relation = relation;
+		this.paymentAmount = paymentAmount;
+		this.paymentStatus = paymentStatus;
+		this.aptStatus = aptStatus;
+		this.patient = patient;
+		this.doctor = doctor;
+		
+		long currentSeconds=Instant.now().getEpochSecond();
+		this.timestamp=new Timestamp(currentSeconds*1000);
+		
+		
+	}
+
+
+
+	
 
 }

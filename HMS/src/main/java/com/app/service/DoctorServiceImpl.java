@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.apache.catalina.mapper.Mapper;
 import org.modelmapper.ModelMapper;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.app.dao.DoctorDao;
 import com.app.dao.PatientDao;
 import com.app.dto.DoctorDto;
+import com.app.dto.SigninRequest;
 import com.app.entities.Doctor;
 import com.app.entities.DoctorSchedule;
 import com.app.entities.Patient;
@@ -69,6 +71,20 @@ public class DoctorServiceImpl implements DoctorService {
 //		System.out.println(patient);
 //		
 		
+	}
+
+
+	@Override
+	public Doctor getDoctorById(Long doctorId) {
+		
+		return docDao.findById(doctorId).orElseThrow();
+	}
+
+
+	@Override
+	public Doctor authenticateDoctor(@Valid SigninRequest request) {
+	
+		return docDao.findByEmailAndPassword(request.getEmail(), request.getPassword()).orElseThrow();
 	}
 	
 //	public List<Doctor> getAllDoctors()

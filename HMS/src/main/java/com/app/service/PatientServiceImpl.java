@@ -37,7 +37,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Patient authenticateEmployee(@Valid SigninRequest request) {
+	public Patient authenticatePatient(@Valid SigninRequest request) {
 		return patientDao.findByEmailAndPassword(request.getEmail(), request.getPassword()).orElseThrow();
 
 	}

@@ -22,17 +22,20 @@ import lombok.Setter;
 import lombok.ToString;
 
 
+@Entity
+@Table(name = "users")
 @NoArgsConstructor
-@MappedSuperclass
+//@MappedSuperclass
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString()
-public class User{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User extends BaseEntity{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id;
 
 	@Column(length = 100)
 	private String email;
