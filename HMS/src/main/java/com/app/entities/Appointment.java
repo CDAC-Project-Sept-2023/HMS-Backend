@@ -2,6 +2,7 @@ package com.app.entities;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -57,6 +58,8 @@ public class Appointment extends BaseEntity {
 	@JoinColumn(name="doctor_id",nullable = false)
 	private Doctor doctor;
 	
+	@Column(name = "appointment_date")
+	private LocalDate appointmentDate;
 	
 	private Timestamp timestamp;
 	
@@ -87,7 +90,7 @@ public class Appointment extends BaseEntity {
 		this.setName(apt.getName());
 		this.setRelation(apt.getRelation());
 		this.setPaymentStatus(true);
-		
+		this.setAppointmentDate(appointmentDate);
 		long currentSeconds=Instant.now().getEpochSecond();
 		this.timestamp=new Timestamp(currentSeconds*1000);
 	//	this.setAptStatus(true);
@@ -96,7 +99,7 @@ public class Appointment extends BaseEntity {
 
 
 	public Appointment(String name, int age, String contactNo, String relation, double paymentAmount,
-			Boolean paymentStatus, Boolean aptStatus, Patient patient, Doctor doctor) {
+			Boolean paymentStatus, Boolean aptStatus, Patient patient, Doctor doctor,LocalDate appointmentDate) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -107,6 +110,7 @@ public class Appointment extends BaseEntity {
 		this.aptStatus = aptStatus;
 		this.patient = patient;
 		this.doctor = doctor;
+		this.appointmentDate= appointmentDate;
 		
 		long currentSeconds=Instant.now().getEpochSecond();
 		this.timestamp=new Timestamp(currentSeconds*1000);

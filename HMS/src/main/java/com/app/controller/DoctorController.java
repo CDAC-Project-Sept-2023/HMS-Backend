@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,28 +32,29 @@ public class DoctorController {
 	@Autowired
 	private DoctorService docService;
 	
-	@PostMapping
-	public Doctor addDoctor(@RequestBody Doctor doctor) {
-		return docService.addDoctorServ(doctor);
-	}
+//	@PostMapping("/register")
+//	public Doctor addDoctor(@RequestBody Doctor doctor) {
+//		return docService.addDoctorServ(doctor);
+//	}
 	
-	@GetMapping
-	public List<Doctor> getAllDoctor(){
-		
-		return docService.getAllDocsServ();
-	}
 	
-	@PutMapping("/{docId}")
-	public void UpdateStatus(@PathVariable Long docId) {
-		
-		 docService.updateStatus(docId);
-	}
 	
-	@PutMapping("doctId/{docId}")
-	public void UpdatePatient(@PathVariable Long docId,@RequestBody DoctorDto detachedDoctor)
-	{
-		docService.updateDoctor(detachedDoctor,docId);
-	}
+//	@PutMapping("/{docId}")
+//	public ResponseEntity<?> UpdateStatus(@PathVariable Long docId) {
+//		
+//		return ResponseEntity
+//				.status(HttpStatus.CREATED)
+//				.body(docService.updateStatus(docId));
+//		 
+//	}
+	
+//	@PutMapping("doctId/{docId}")
+//	public void UpdateDoctor(@PathVariable Long docId,@RequestBody DoctorDto detachedDoctor)
+//	{
+//		docService.updateDoctor(detachedDoctor,docId);
+//	}
+	
+	
 	@GetMapping("/{doctorId}")
 	public Doctor getDoctorById(@PathVariable Long doctorId) {
 		return docService.getDoctorById(doctorId);
@@ -65,5 +68,14 @@ public class DoctorController {
 
 	}
 	
-	
+	@PutMapping("update/{docId}")
+	public ResponseEntity<?> UpdateDoctor(@PathVariable Long docId,@RequestBody Doctor detachedDoctor)
+	{
+		System.out.println(detachedDoctor);
+		
+		
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(docService.updateDoctor(detachedDoctor,docId));
+	}
 }

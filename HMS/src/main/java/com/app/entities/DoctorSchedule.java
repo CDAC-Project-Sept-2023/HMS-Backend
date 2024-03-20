@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,12 +25,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @Setter
 @Getter
-@ToString()
+@ToString(exclude = "doctor")
 public class DoctorSchedule extends BaseEntity{
 
 	@Column
 	private String day;
 	@Column
-	private LocalDate time;
+	private String time;
+	
+	@ManyToOne
+	@JoinColumn(name = "doctor_id")
+	@JsonIgnore
+	private Doctor doctor;
 	
 }

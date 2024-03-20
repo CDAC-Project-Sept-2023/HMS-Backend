@@ -8,4 +8,5 @@ import com.app.entities.Admin;
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Long>{
 
+	
 }

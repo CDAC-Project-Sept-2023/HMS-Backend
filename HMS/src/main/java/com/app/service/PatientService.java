@@ -16,9 +16,9 @@ public interface PatientService {
 
 	Patient authenticatePatient(@Valid SigninRequest request);
 
-	void updateStatusOfPatient(Long patientId);
+	//boolean updateStatusOfPatient(Long patientId);
 
-	void updatePatient(PatientDto detachedPatient, Long patientId);
+	boolean updatePatient(PatientDto detachedPatient, Long patientId);
 
 	Patient getPatientById(Long patientId);
 

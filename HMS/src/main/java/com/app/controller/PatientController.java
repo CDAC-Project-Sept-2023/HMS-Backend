@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,45 +31,48 @@ public class PatientController {
 	@Autowired
 	private PatientService patientServ;
 
-	@GetMapping()
-	public List<Patient> displayPatient() {
-		return patientServ.displayAllPatient();
-	}
+//	@GetMapping()
+//	public List<Patient> displayPatient() {
+//		return patientServ.displayAllPatient();
+//	}
 
-	@PostMapping()
+	@PostMapping("/register")
 	public Patient addPatient(@RequestBody Patient patient) {
 
 		System.out.println("patient controller");
 		return patientServ.addPatientServ(patient);
 	}
 
-	@PostMapping("/signin")
-	public Patient authenticateEmp(@RequestBody @Valid SigninRequest request) {
-		System.out.println("in auth emp " + request);
-		return patientServ.authenticatePatient(request);
+//	@PostMapping("/signin")
+//	public Patient authenticateEmp(@RequestBody @Valid SigninRequest request) {
+//		System.out.println("in auth emp " + request);
+//		return patientServ.authenticatePatient(request);
+//
+//	}
+
+
+//	@PutMapping("patientId/{patientId}")
+//	public ResponseEntity<String> UpdatePatient(@PathVariable Long patientId, @RequestBody PatientDto detachedPatient) {
+//
+//		patientServ.updatePatient(detachedPatient, patientId);
+//		return ResponseEntity.ok("Patient profile updated successfully");
+//				
+//
+//	}
+
+	@PutMapping("patientId/{patientId}")
+	public ResponseEntity<?> UpdatePatient(@PathVariable Long patientId, @RequestBody PatientDto detachedPatient) {
+
+		
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(patientServ.updatePatient(detachedPatient, patientId));
+				
 
 	}
-	
-	@PutMapping("status/patientId/{patientId}")
-	public  void UpdateStatusOfPatient(@PathVariable Long patientId)
-	{
-      patientServ.updateStatusOfPatient(patientId);		
-	}
-	
-	@PutMapping("patientId/{patientId}")
-	public Integer UpdatePatient(@PathVariable Long patientId,@RequestBody PatientDto detachedPatient)
-	{
-		
-		patientServ.updatePatient(detachedPatient,patientId);
-		int i =1;
-		return i;
-	}
-	
 	@GetMapping("/{patientId}")
 	public Patient getPatientById(@PathVariable Long patientId) {
 		return patientServ.getPatientById(patientId);
-		
+
 	}
-	
 
 }

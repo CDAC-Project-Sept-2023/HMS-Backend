@@ -15,9 +15,9 @@ public interface DoctorService {
 
 	List<Doctor> getAllDocsServ();
 
-    void updateStatus(Long docId);
+	boolean updateStatus(Long docId);
 
-	void updateDoctor(DoctorDto detachedDoctor, Long docId);
+	boolean updateDoctor(Doctor detachedDoctor, Long docId);
 
 	Doctor getDoctorById(Long doctorId);
 

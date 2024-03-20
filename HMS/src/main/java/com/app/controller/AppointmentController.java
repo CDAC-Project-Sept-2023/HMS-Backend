@@ -29,12 +29,23 @@ public class AppointmentController {
 	@Autowired
 	private AppointmentService aptService;
 
+//	@PostMapping()
+//	public String doAppoinment(@RequestParam Long patientId, @RequestParam Long doctorId,
+//			@RequestBody @Valid AppointmentDto aptDto) {
+//		
+//		System.out.println("patienId"+patientId);
+//		System.out.println("patienId"+doctorId);
+//		System.out.println("appioint indfo "+aptDto);
+//		return aptService.addAppoinment(patientId, doctorId, aptDto);
+//
+//	}
 	@PostMapping()
-	public String doAppoinment(@RequestParam Long patientId, @RequestParam Long doctorId,
-			@RequestBody @Valid AppointmentDto aptDto) {
-		System.out.println(aptDto);
-		return aptService.addAppoinment(patientId, doctorId, aptDto);
-
+	public boolean doAppoinment(@RequestBody @Valid AppointmentDto aptDto) {
+		
+		System.out.println("appioint indfo "+aptDto);
+		aptService.addAppoinment( aptDto);
+			
+			return true;
 	}
 
 	@GetMapping
@@ -49,10 +60,24 @@ public class AppointmentController {
 		aptService.updateAppointmentStatusServ(id);
 	}
 	
-	@GetMapping("/{patientId}")
+	
+	@PutMapping("/paymentStatus/{id}")
+	public void updateAppointmentPaymentStatus(@PathVariable Long id) {
+		aptService.updatePaymentStatus(id);
+	}
+	@GetMapping("patient/{patientId}")
 	public List<Appointment> getAllAppointmentBypatientId(@PathVariable Long patientId){
 		return aptService.getAllAppointmentBypatientId(patientId);
 		
-
+	}
+	@GetMapping("/{doctorId}")
+	public List<Appointment> getAllAppointmentBydoctorId(@PathVariable Long doctorId){
+		return aptService.getAllAppointmentBydoctorId(doctorId);
+		
+	}
+	
+	@GetMapping("/paymentStatusTrue")
+	public List<Appointment> getAllAppointmentByApointmentStatusTrue(){
+		return aptService.getAllAppointAptStatusTrueServ();
 	}
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.apache.catalina.mapper.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.DoctorDao;
@@ -28,10 +29,14 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	
 	@Override
 	public Doctor addDoctorServ(Doctor doctor) {
-		List<DoctorSchedule> listd = doctor.getDSchedule();
+		List<DoctorSchedule> listd = doctor.getSchedule();
+		doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
 		doctor.addDSchedule(listd);
 		return docDao.save(doctor);
 	}
@@ -46,24 +51,28 @@ public class DoctorServiceImpl implements DoctorService {
 
 
 	@Override
-	public void updateStatus(Long docId) {
+	public boolean updateStatus(Long docId) {
 		
 		Doctor doc=docDao.findById(docId).orElseThrow();
 		doc.setStatus(false);
 		docDao.save(doc);
-		
+		return true;
 	}
 
-
+//doctor functimoality need to visit again
 	@Override
-	public void updateDoctor(DoctorDto detachedDoctor, Long docId) {
-		//List<DoctorSchedule> list = detachedDoctor.getDSchedule();
-		//detachedDoctor.addDSchedule(list);
+	public boolean updateDoctor(Doctor detachedDoctor, Long docId) {
+				//detachedDoctor.addDSchedule(list);
 		Doctor doctor=docDao.findById(docId).orElseThrow();
-		mapper.map(detachedDoctor, doctor);
 		
+		List<DoctorSchedule> listd = detachedDoctor.getSchedule();
+		doctor.addDSchedule(listd);
+		detachedDoctor.setPassword(passwordEncoder.encode(detachedDoctor.getPassword()));
+		docDao.save(detachedDoctor);
+//		mapper.map(detachedDoctor, doctor);
+		return true;
 		
-		
+	}
 		
 //		Patient patient = patientDao.findById(patientId).orElseThrow();
 //		System.out.println(patient);
@@ -71,7 +80,7 @@ public class DoctorServiceImpl implements DoctorService {
 //		System.out.println(patient);
 //		
 		
-	}
+	
 
 
 	@Override

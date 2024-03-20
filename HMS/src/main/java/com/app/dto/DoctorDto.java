@@ -29,14 +29,14 @@ public class DoctorDto {
 	private String password;
 	
 	@NotNull
-	private String dName;
+	private String name;
 	
 	@NotNull
-	private String dContactNo;
+	private String contactNo;
 	
 	
 	@NotNull
-	private String dSpecialisation;
+	private String specialisation;
 	
 //	private List<DoctorSchedule> dSchedule = new ArrayList<>();	
 //    public void addDSchedule(List<DoctorSchedule> listd) {

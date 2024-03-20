@@ -31,27 +31,22 @@ import lombok.ToString;
 public class Doctor extends User {
 
 	@Column(name = "doctor_name", length = 200)
-	private String dName;
+	private String name;
 
 	@Column(name = "doctor_contact", length = 100)
-	private String dContactNo;
+	private String contactNo;
 
 	@Column(name = "doctor_specialisation", length = 400)
-	private String dSpecialisation;
+	private String specialisation;
 
-//	@Column(name="doctor_schedule")
-//	@ElementCollection
-//	@CollectionTable(name ="doctor_schedule",joinColumns = @JoinColumn())
-//	@OneToMany(fetch = FetchType.EAGER)
-//	private List<DoctorSchedule> dSchedule = new ArrayList<DoctorSchedule>() ;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="doctor_schedule")
-	private List<DoctorSchedule> dSchedule = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "doctor")
+	//@JoinColumn(name="doctor_schedule")
+	private List<DoctorSchedule> schedule = new ArrayList<>();
 
 	public void addDSchedule(List<DoctorSchedule> listd) {
 		
-		this.dSchedule.addAll(listd);
+		this.schedule.addAll(listd);
 	
 
 	}

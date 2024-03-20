@@ -1,7 +1,6 @@
 package com.app.entities;
 
-
 public enum UserRole {
 
-	Patient,Admin,Doctor
+	ROLE_PATIENT, ROLE_ADMIN, ROLE_DOCTOR
 }

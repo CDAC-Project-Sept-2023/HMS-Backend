@@ -31,18 +31,17 @@ import lombok.ToString;
 public class Patient extends User {
 	
 	@Column(name="patient_name",length = 100)
-	private String pName;
+	private String name;
 	
 	@Column(name="patient_contact",length = 15)
-	private String pContactNo;
+	private String contactNo;
 	
 	@Column(name="patient_age")
-	private int pAge;
+	private int age;
 	
 	@Column(name="patient_address",length = 400)
-	private String pAddress;
+	private String address;
 	
 	@Column(name="patient_bloodgroup",length = 10)
-	private String pBloodGroup;	
-
+	private String bloodGroup;
 }

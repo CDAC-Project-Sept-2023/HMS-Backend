@@ -33,14 +33,11 @@ import lombok.ToString;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity{
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Long id;
 
 	@Column(length = 100)
 	private String email;
 	
-	@Column(length = 50)
+	
 	private String password;
 	
 	@Column()
@@ -48,7 +45,7 @@ public class User extends BaseEntity{
 	private UserRole role;	
 	
 	@Column(nullable = false)
-	private Boolean status;
+	private Boolean status=true;
 	
 
 }

@@ -25,18 +25,18 @@ public class PatientDto {
 	private String password;
 	
 	@NotNull
-	private String pName;
+	private String name;
 	
 	@NotNull
-	private String pContactNo;
+	private String contactNo;
 	
 	@NotNull
-	private int pAge;
+	private int age;
 	
 	@NotNull
-	private String pAddress;
+	private String address;
 	
 	@NotNull
-	private String pBloodGroup;	
+	private String bloodGroup;	
 
 }

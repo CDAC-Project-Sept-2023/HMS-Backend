@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.app.dao.PatientDao;
 import com.app.dto.PatientDto;
@@ -22,10 +23,14 @@ public class PatientServiceImpl implements PatientService {
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Patient addPatientServ(Patient patient) {
 
+		patient.setPassword(passwordEncoder.encode(patient.getPassword()));
 		return patientDao.save(patient);
 	}
 
@@ -42,21 +47,21 @@ public class PatientServiceImpl implements PatientService {
 
 	}
 
-	@Override
-	public void updateStatusOfPatient(Long patientId) {
-	Patient pat	= patientDao.findById(patientId).orElseThrow();
-		pat.setStatus(false);
-		patientDao.save(pat);
-	}
+//	@Override
+//	public boolean updateStatusOfPatient(Long patientId) {
+//	Patient pat	= patientDao.findById(patientId).orElseThrow();
+//		pat.setStatus(false);
+//		patientDao.save(pat);
+//		return true;
+//	}
 
 	@Override
-	public void updatePatient(PatientDto detachedPatient ,Long patientId) {
+	public boolean updatePatient(PatientDto detachedPatient ,Long patientId) {
 		
 		Patient patient = patientDao.findById(patientId).orElseThrow();
 		System.out.println(patient);
 		mapper.map(detachedPatient, patient);
-		System.out.println(patient);
-		
+	return true;
 		
 	}
 
